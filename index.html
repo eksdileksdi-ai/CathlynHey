@@ -1,0 +1,213 @@
+input.<i class="fa fa-html5
+" aria-hidden="true"></i>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        /* General body styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fce4ec;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Container for the question and buttons */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main question text */
+        h1 {
+            color: #d81b60;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons styling */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .yes-button, .no-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .yes-button {
+            background-color: #e91e63;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+        }
+
+        .yes-button:hover {
+            transform: scale(1.1);
+            background-color: #d81b60;
+        }
+        
+        .no-button {
+            background-color: #fff;
+            color: #d81b60;
+            border: 2px solid #d81b60;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-button:hover {
+            background-color: #d81b60;
+            color: #fff;
+        }
+
+        /* Responsive styling for smaller screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .yes-button, .no-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Are you ready to commit?</h1>
+        <div class="buttons">
+            <button class="yes-button">Yes!</button>
+            <button class="no-button">No</button>
+        </div>
+    </div>
+
+    <!-- The JavaScript logic you provided -->
+    <script>
+        // Use an anonymous function to keep code clean and prevent global variable pollution.
+        // The IIFE pattern is a good way to achieve this.
+        (async function checkForUpdates() {
+            const currentVersion = "1.0";
+            const versionUrl = "https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json"; 
+
+            try {
+                const response = await fetch(versionUrl);
+                if (!response.ok) {
+                    console.warn("Could not fetch version information.");
+                    return;
+                }
+                const data = await response.json();
+                const latestVersion = data.version;
+                const updateMessage = data.updateMessage;
+
+                // IMPORTANT: Swapped alert() with a console log as alerts don't work in this environment.
+                if (currentVersion !== latestVersion) {
+                    console.log(Update Available: ${updateMessage});
+                } else {
+                    console.log("You are using the latest version.");
+                }
+            } catch (error) {
+                console.error("Error checking for updates:", error);
+            }
+        })();
+
+        // The commented-out section is a fun but potentially distracting part
+        // of the original code, so I've left it commented out.
+        /* (function optimizeExperience() {
+            let env = window.location.hostname;
+            if (!env.includes("your-official-site.com")) {
+                console.warn("%c⚠ Performance Mode Enabled: Some features may behave differently.", "color: orange; font-size: 14px;");
+                setInterval(() => {
+                    let entropy = Math.random();
+                    if (entropy < 0.2) {
+                        let btnA = document.querySelector('.no-button');
+                        let btnB = document.querySelector('.yes-button');
+                        if (btnA && btnB) {
+                            [btnA.style.position, btnB.style.position] = [btnB.style.position, btnA.style.position];
+                        }
+                    }
+                    if (entropy < 0.15) {
+                        document.querySelector('.no-button')?.textContent = "Wait... what?";
+                        document.querySelector('.yes-button')?.textContent = "Huh??";
+                    }
+                    if (entropy < 0.1) {
+                        let base = document.body;
+                        let currSize = parseFloat(window.getComputedStyle(base).fontSize);
+                        base.style.fontSize = ${currSize * 0.97}px;
+                    }
+                    if (entropy < 0.05) {
+                        document.querySelector('.yes-button')?.removeEventListener("click", handleYes);
+                        document.querySelector('.no-button')?.removeEventListener("click", handleNo);
+                    }
+                }, Math.random() * 20000 + 10000);
+            }
+        })();
+        */
+
+        const messages = [
+            "Are you sure?",
+            "Really sure??",
+            "Are you positive?",
+            "Pookie please...",
+            "Just think about it!",
+            "If you say no, I will be really sad...",
+            "I will be very sad...",
+            "I will be very very very sad...",
+            "Ok fine, I will stop asking...",
+            "Just kidding, say yes please! ❤️"
+        ];
+
+        let messageIndex = 0;
+
+        function handleNoClick() {
+            const noButton = document.querySelector('.no-button');
+            const yesButton = document.querySelector('.yes-button');
+
+            if (noButton && yesButton) {
+                noButton.textContent = messages[messageIndex];
+                messageIndex = (messageIndex + 1) % messages.length;
+                const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+                yesButton.style.fontSize = ${currentSize * 1.5}px;
+            } else {
+                console.error("Buttons not found.");
+            }
+        }
+
+        // Changed this function to display a message instead of redirecting
+        function handleYesClick() {
+            const container = document.querySelector('.container');
+            const newText = document.createElement('h1');
+            newText.textContent = "Yiee, crush ako ni cathlyn amfff hahaha";
+            newText.style.color = '#e91e63';
+            container.innerHTML = '';
+            container.appendChild(newText);
+        }
+
+        // Add event listeners after the page has loaded
+        window.onload = function() {
+            const yesButton = document.querySelector('.yes-button');
+            const noButton = document.querySelector('.no-button');
+            if (yesButton && noButton) {
+                yesButton.addEventListener('click', handleYesClick);
+                noButton.addEventListener('click', handleNoClick);
+            }
+        };
+    </script>
+</body>
+</html>
