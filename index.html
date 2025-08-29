@@ -1,5 +1,3 @@
-input.<i class="fa fa-html5
-" aria-hidden="true"></i>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +96,7 @@ input.<i class="fa fa-html5
         </div>
     </div>
 
-    <!-- The JavaScript logic you provided -->
+    <!-- The JavaScript logic -->
     <script>
         // Use an anonymous function to keep code clean and prevent global variable pollution.
         // The IIFE pattern is a good way to achieve this.
@@ -118,7 +116,7 @@ input.<i class="fa fa-html5
 
                 // IMPORTANT: Swapped alert() with a console log as alerts don't work in this environment.
                 if (currentVersion !== latestVersion) {
-                    console.log(Update Available: ${updateMessage});
+                    console.log(`Update Available: ${updateMessage}`);
                 } else {
                     console.log("You are using the latest version.");
                 }
@@ -149,7 +147,7 @@ input.<i class="fa fa-html5
                     if (entropy < 0.1) {
                         let base = document.body;
                         let currSize = parseFloat(window.getComputedStyle(base).fontSize);
-                        base.style.fontSize = ${currSize * 0.97}px;
+                        base.style.fontSize = `${currSize * 0.97}px`;
                     }
                     if (entropy < 0.05) {
                         document.querySelector('.yes-button')?.removeEventListener("click", handleYes);
@@ -183,7 +181,7 @@ input.<i class="fa fa-html5
                 noButton.textContent = messages[messageIndex];
                 messageIndex = (messageIndex + 1) % messages.length;
                 const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-                yesButton.style.fontSize = ${currentSize * 1.5}px;
+                yesButton.style.fontSize = `${currentSize * 1.5}px`;
             } else {
                 console.error("Buttons not found.");
             }
